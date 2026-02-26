@@ -173,10 +173,22 @@ const page = document.getElementById("page");
 const fileInput = document.getElementById("fileInput");
 
 /* MOVIE GENRES */
-const movieGenres = ["Action","Comedy","Romance","My Favourites"];
+const movieGenres = [
+    "Action",
+    "Comedy",
+    "Romance",
+    "My Favourites"
+];
 
 /* TV SERIES GENRES */
-const seriesGenres = ["Drama","Sitcom","Thriller","Sci-Fi","cartoon","My Series Favourites"];
+const seriesGenres = [
+    "Drama",
+    "Sitcom",
+    "Thriller",
+    "Sci-Fi",
+    "cartoon",
+    "My Series Favourites"
+];
 
 let currentGenre = null;
 let currentFolder = null;
@@ -192,10 +204,12 @@ function showHome() {
 /* MOVIES */
 function openMovies() {
     currentFolder = "movies";
+
     page.innerHTML = `
         <div class="back" onclick="showHome()">← Back</div>
         <h2>Movies</h2>
     `;
+
     movieGenres.forEach(g => {
         const div = document.createElement("div");
         div.className = "genre";
@@ -208,42 +222,49 @@ function openMovies() {
 /* SERIES */
 function openSeries() {
     currentFolder = "series";
+
     page.innerHTML = `
         <div class="back" onclick="showHome()">← Back</div>
         <h2>TV Series</h2>
     `;
+
     seriesGenres.forEach(g => {
         const div = document.createElement("div");
         div.className = "genre";
         div.innerText = g;
-        if (g === "Sitcom") div.onclick = () => openSitcomFolder();
-        else div.onclick = () => openGenre(g);
+
+        if (g === "Sitcom") {
+            div.onclick = () => openSitcomFolder();
+        } else {
+            div.onclick = () => openGenre(g);
+        }
+
         page.appendChild(div);
     });
 }
 
-/* ⭐ UPDATED SITCOM ARRAY ⭐ */
+/* ⭐ SITCOM SHOWS ⭐ */
 const sitcomShows = [
-    { id: "friends", name: "Friends", poster: "FRIENDS_POSTER.jpg" },
-    { id: "simpsons", name: "The Simpsons", poster: "THE_SIMPSONS_POSTER.jpg" },
-    { id: "samcat", name: "Sam & Cat", poster: "SAM_AND_CAT_POSTER.jpg" },
-    { id: "twobrokegirls", name: "2 Broke Girls", poster: "TWO_BROKE_GIRLS_POSTER.jpg" },
-    { id: "georgiemandy", name: "Georgie & Mandy", poster: "GEORGIE_AND_MANDY_POSTER.jpg" },
-    { id: "suitelifeondeck", name: "The Suite Life on Deck", poster: "SUITE_LIFE_ON_DECK_POSTER.jpg" },
-    { id: "drakejosh", name: "Drake & Josh", poster: "DRAKE_AND_JOSH_POSTER.jpg" },
-    { id: "shakeitup", name: "Shake It Up", poster: "SHAKE_IT_UP_POSTER.jpg" },
-    { id: "ravenshome", name: "Raven's Home", poster: "RAVENS_HOME_POSTER.jpg" },
-    { id: "zoey101", name: "Zoey 101", poster: "ZOEY_101_POSTER.jpg" },
-    { id: "melissajoey", name: "Melissa & Joey", poster: "MELISSA_AND_JOEY_POSTER.jpg" },
-    { id: "victorious", name: "Victorious", poster: "VICTORIOUS_POSTER.jpg" },
-    { id: "goodluckcharlie", name: "Good Luck Charlie", poster: "GOOD_LUCK_CHARLIE_POSTER.jpg" },
-    { id: "kcundercover", name: "K.C. Undercover", poster: "KC_UNDERCOVER_POSTER.jpg" },
-    { id: "wizards", name: "Wizards of Waverly Place", poster: "WIZARDS_OF_WAVERLY_PLACE_POSTER.jpg" },
-    { id: "icarly", name: "iCarly", poster: "ICARLY_POSTER.jpg" },
-    { id: "familyguy", name: "Family Guy", poster: "FAMILY_GUY_POSTER.jpg" },
-    { id: "youngsheldon", name: "Young Sheldon", poster: "YOUNG_SHELDON_POSTER.jpg" },
-    { id: "bigbang", name: "The Big Bang Theory", poster: "BIG_BANG_THEORY_POSTER.jpg" },
-    { id: "theneighbourhood", name: "The Neighbourhood", poster: "THE_NEIGHBOURHOOD_POSTER.jpg" }
+    { id: "friends",          name: "Friends",                poster: "FRIENDS_POSTER.jpg" },
+    { id: "simpsons",         name: "The Simpsons",           poster: "THE_SIMPSONS_POSTER.jpg" },
+    { id: "samcat",           name: "Sam & Cat",              poster: "SAM_AND_CAT_POSTER.jpg" },
+    { id: "twobrokegirls",    name: "2 Broke Girls",          poster: "TWO_BROKE_GIRLS_POSTER.jpg" },
+    { id: "georgiemandy",     name: "Georgie & Mandy",        poster: "GEORGIE_AND_MANDY_POSTER.jpg" },
+    { id: "suitelifeondeck",  name: "The Suite Life on Deck", poster: "SUITE_LIFE_ON_DECK_POSTER.jpg" },
+    { id: "drakejosh",        name: "Drake & Josh",           poster: "DRAKE_AND_JOSH_POSTER.jpg" },
+    { id: "shakeitup",        name: "Shake It Up",            poster: "SHAKE_IT_UP_POSTER.jpg" },
+    { id: "ravenshome",       name: "Raven's Home",           poster: "RAVENS_HOME_POSTER.jpg" },
+    { id: "zoey101",          name: "Zoey 101",               poster: "ZOEY_101_POSTER.jpg" },
+    { id: "melissajoey",      name: "Melissa & Joey",         poster: "MELISSA_AND_JOEY_POSTER.jpg" },
+    { id: "victorious",       name: "Victorious",             poster: "VICTORIOUS_POSTER.jpg" },
+    { id: "goodluckcharlie",  name: "Good Luck Charlie",      poster: "GOOD_LUCK_CHARLIE_POSTER.jpg" },
+    { id: "kcundercover",     name: "K.C. Undercover",        poster: "KC_UNDERCOVER_POSTER.jpg" },
+    { id: "wizards",          name: "Wizards of Waverly Place", poster: "WIZARDS_OF_WAVERLY_PLACE_POSTER.jpg" },
+    { id: "icarly",           name: "iCarly",                 poster: "ICARLY_POSTER.jpg" },
+    { id: "familyguy",        name: "Family Guy",             poster: "FAMILY_GUY_POSTER.jpg" },
+    { id: "youngsheldon",     name: "Young Sheldon",          poster: "YOUNG_SHELDON_POSTER.jpg" },
+    { id: "bigbang",          name: "The Big Bang Theory",    poster: "BIG_BANG_THEORY_POSTER.jpg" },
+    { id: "theneighbourhood", name: "The Neighbourhood",      poster: "THE_NEIGHBOURHOOD_POSTER.jpg" }
 ];
 
 /* ⭐ NEIGHBOURHOOD FOLDER ⭐ */
@@ -291,14 +312,16 @@ function openNeighbourhoodSeason1() {
     `;
 }
 
-/* ⭐ SITCOM FOLDER ⭐ */
+/* ⭐ SITCOM FOLDER — AUTO GENERATES ALL CARDS ⭐ */
 function openSitcomFolder() {
     currentFolder = "series";
+
     page.innerHTML = `
         <div class="back" onclick="openSeries()">← Back</div>
         <h2>Sitcom</h2>
         <div class="row" id="sitcom-row"></div>
     `;
+
     const row = document.getElementById("sitcom-row");
 
     sitcomShows.forEach(show => {
@@ -306,18 +329,23 @@ function openSitcomFolder() {
         tile.className = "tile";
 
         tile.onclick = () => {
-            if (show.id === "theneighbourhood") openNeighbourhoodFolder();
-            else openSitcomShow(show.id);
+            if (show.id === "theneighbourhood") {
+                openNeighbourhoodFolder();
+            } else {
+                openSitcomShow(show.id);
+            }
         };
 
         tile.innerHTML = `
-            <img src="${show.poster}" style="width:100%; height:100%; object-fit:cover;">
+            <img src="${show.poster}"
+                 style="width:100%; height:100%; object-fit:cover;">
         `;
+
         row.appendChild(tile);
     });
 }
 
-/* ⭐ GENERIC SHOW PAGE ⭐ */
+/* ⭐ AUTO PAGE FOR EACH OTHER SHOW ⭐ */
 function openSitcomShow(id) {
     const show = sitcomShows.find(s => s.id === id);
     if (!show) return;
@@ -331,7 +359,8 @@ function openSitcomShow(id) {
 
         <div class="row" id="row-series-${show.id}">
             <div class="tile">
-                <img src="${show.poster}" style="width:100%; height:100%; object-fit:cover;">
+                <img src="${show.poster}"
+                     style="width:100%; height:100%; object-fit:cover;">
             </div>
 
             <div class="tile add-tile" onclick="triggerUpload()">
@@ -344,6 +373,7 @@ function openSitcomShow(id) {
 /* GENRE PAGE */
 function openGenre(name) {
     currentGenre = name;
+
     page.innerHTML = `
         <div class="back" onclick="${currentFolder === 'movies' ? 'openMovies()' : 'openSeries()'}">← Back</div>
         <h2>${name}</h2>
