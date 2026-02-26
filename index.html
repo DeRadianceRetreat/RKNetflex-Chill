@@ -165,8 +165,7 @@ body {
 
 <div class="page" id="page"></div>
 
-<!-- ⭐ NOW SUPPORTS FOLDER UPLOADS ⭐ -->
-<input type="file" id="fileInput" accept="video/mp4" multiple webkitdirectory directory style="display:none">
+<input type="file" id="fileInput" accept="video/mp4" multiple style="display:none">
 
 <script>
 const page = document.getElementById("page");
@@ -243,31 +242,31 @@ function openSeries() {
     });
 }
 
-/* ⭐ 20 SITCOM SHOWS ⭐ */
+/* ⭐ UPDATED SITCOM ARRAY WITH CORRECT IMAGE PATHS ⭐ */
 const sitcomShows = [
-    { id: "friends",          name: "Friends",                poster: "FRIENDS_POSTER.jpg" },
-    { id: "simpsons",         name: "The Simpsons",           poster: "THE_SIMPSONS_POSTER.jpg" },
-    { id: "samcat",           name: "Sam & Cat",              poster: "SAM_AND_CAT_POSTER.jpg" },
-    { id: "twobrokegirls",    name: "2 Broke Girls",          poster: "TWO_BROKE_GIRLS_POSTER.jpg" },
-    { id: "georgiemandy",     name: "Georgie & Mandy",        poster: "GEORGIE_AND_MANDY_POSTER.jpg" },
-    { id: "suitelifeondeck",  name: "The Suite Life on Deck", poster: "SUITE_LIFE_ON_DECK_POSTER.jpg" },
-    { id: "drakejosh",        name: "Drake & Josh",           poster: "DRAKE_AND_JOSH_POSTER.jpg" },
-    { id: "shakeitup",        name: "Shake It Up",            poster: "SHAKE_IT_UP_POSTER.jpg" },
-    { id: "ravenshome",       name: "Raven's Home",           poster: "RAVENS_HOME_POSTER.jpg" },
-    { id: "zoey101",          name: "Zoey 101",               poster: "ZOEY_101_POSTER.jpg" },
-    { id: "melissajoey",      name: "Melissa & Joey",         poster: "MELISSA_AND_JOEY_POSTER.jpg" },
-    { id: "victorious",       name: "Victorious",             poster: "VICTORIOUS_POSTER.jpg" },
-    { id: "goodluckcharlie",  name: "Good Luck Charlie",      poster: "GOOD_LUCK_CHARLIE_POSTER.jpg" },
-    { id: "kcundercover",     name: "K.C. Undercover",        poster: "KC_UNDERCOVER_POSTER.jpg" },
-    { id: "wizards",          name: "Wizards of Waverly Place", poster: "WIZARDS_OF_WAVERLY_PLACE_POSTER.jpg" },
-    { id: "icarly",           name: "iCarly",                 poster: "ICARLY_POSTER.jpg" },
-    { id: "familyguy",        name: "Family Guy",             poster: "FAMILY_GUY_POSTER.jpg" },
-    { id: "youngsheldon",     name: "Young Sheldon",          poster: "YOUNG_SHELDON_POSTER.jpg" },
-    { id: "bigbang",          name: "The Big Bang Theory",    poster: "BIG_BANG_THEORY_POSTER.jpg" },
-    { id: "theneighbourhood", name: "The Neighbourhood",      poster: "THE_NEIGHBOURHOOD_POSTER.jpg" }
+    { id: "friends",          name: "Friends",                poster: "images/FRIENDS_POSTER.jpg" },
+    { id: "simpsons",         name: "The Simpsons",           poster: "images/THE_SIMPSONS_POSTER.jpg" },
+    { id: "samcat",           name: "Sam & Cat",              poster: "images/SAM_AND_CAT_POSTER.jpg" },
+    { id: "twobrokegirls",    name: "2 Broke Girls",          poster: "images/TWO_BROKE_GIRLS_POSTER.jpg" },
+    { id: "georgiemandy",     name: "Georgie & Mandy",        poster: "images/GEORGIE_AND_MANDY_POSTER.jpg" },
+    { id: "suitelifeondeck",  name: "The Suite Life on Deck", poster: "images/SUITE_LIFE_ON_DECK_POSTER.jpg" },
+    { id: "drakejosh",        name: "Drake & Josh",           poster: "images/DRAKE_AND_JOSH_POSTER.jpg" },
+    { id: "shakeitup",        name: "Shake It Up",            poster: "images/SHAKE_IT_UP_POSTER.jpg" },
+    { id: "ravenshome",       name: "Raven's Home",           poster: "images/RAVENS_HOME_POSTER.jpg" },
+    { id: "zoey101",          name: "Zoey 101",               poster: "images/ZOEY_101_POSTER.jpg" },
+    { id: "melissajoey",      name: "Melissa & Joey",         poster: "images/MELISSA_AND_JOEY_POSTER.jpg" },
+    { id: "victorious",       name: "Victorious",             poster: "images/VICTORIOUS_POSTER.jpg" },
+    { id: "goodluckcharlie",  name: "Good Luck Charlie",      poster: "images/GOOD_LUCK_CHARLIE_POSTER.jpg" },
+    { id: "kcundercover",     name: "K.C. Undercover",        poster: "images/KC_UNDERCOVER_POSTER.jpg" },
+    { id: "wizards",          name: "Wizards of Waverly Place", poster: "images/WIZARDS_OF_WAVERLY_PLACE_POSTER.jpg" },
+    { id: "icarly",           name: "iCarly",                 poster: "images/ICARLY_POSTER.jpg" },
+    { id: "familyguy",        name: "Family Guy",             poster: "images/FAMILY_GUY_POSTER.jpg" },
+    { id: "youngsheldon",     name: "Young Sheldon",          poster: "images/YOUNG_SHELDON_POSTER.jpg" },
+    { id: "bigbang",          name: "The Big Bang Theory",    poster: "images/BIG_BANG_THEORY_POSTER.jpg" },
+    { id: "theneighbourhood", name: "The Neighbourhood",      poster: "images/THE_NEIGHBOURHOOD_POSTER.jpg" }
 ];
 
-/* ⭐ SITCOM FOLDER — AUTO GENERATES ALL 20 CARDS ⭐ */
+/* ⭐ SITCOM FOLDER — AUTO GENERATES ALL CARDS ⭐ */
 function openSitcomFolder() {
     currentFolder = "series";
 
@@ -285,8 +284,7 @@ function openSitcomFolder() {
         tile.onclick = () => openSitcomShow(show.id);
 
         tile.innerHTML = `
-            <img src="${show.poster}"
-                 style="width:100%; height:100%; object-fit:cover;">
+            <img src="${show.poster}" style="width:100%; height:100%; object-fit:cover;">
         `;
 
         row.appendChild(tile);
@@ -307,8 +305,7 @@ function openSitcomShow(id) {
 
         <div class="row" id="row-series-${show.id}">
             <div class="tile">
-                <img src="${show.poster}"
-                     style="width:100%; height:100%; object-fit:cover;">
+                <img src="${show.poster}" style="width:100%; height:100%; object-fit:cover;">
             </div>
 
             <div class="tile add-tile" onclick="triggerUpload()">
