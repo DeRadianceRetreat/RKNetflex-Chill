@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Home Page</title>
+<title> Home Page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -115,7 +116,6 @@ body {
     overflow: hidden;
     cursor: pointer;
     transition: 0.2s ease;
-    position: relative;
 }
 
 .tile:hover {
@@ -243,7 +243,7 @@ function openSeries() {
     });
 }
 
-/* ⭐ 19 ORIGINAL SITCOM SHOWS WITH POSTERS ⭐ */
+/* ⭐ 19 SITCOM SHOWS ⭐ */
 const sitcomShows = [
     { id: "friends",          name: "Friends",                poster: "FRIENDS_POSTER.jpg" },
     { id: "simpsons",         name: "The Simpsons",           poster: "THE_SIMPSONS_POSTER.jpg" },
@@ -266,55 +266,7 @@ const sitcomShows = [
     { id: "bigbang",          name: "The Big Bang Theory",    poster: "BIG_BANG_THEORY_POSTER.jpg" }
 ];
 
-/* Extra Neighbourhood poster */
-const neighbourhoodPoster = "THE_NEIGHBOURHOOD_POSTER.jpg";
-
-/* ⭐ NEIGHBOURHOOD FOLDER ⭐ */
-function openNeighbourhoodFolder() {
-    currentFolder = "series";
-    currentGenre = "neighbourhood";
-
-    page.innerHTML = `
-        <div class="back" onclick="openSitcomFolder()">← Back</div>
-        <h2>The Neighbourhood</h2>
-
-        <div class="row">
-            <div class="tile" onclick="openNeighbourhoodSeason1()">
-                <img src="${neighbourhoodPoster}"
-                     style="width:100%; height:100%; object-fit:cover;">
-                <div style="
-                    position:absolute;
-                    bottom:0;
-                    width:100%;
-                    background:rgba(0,0,0,0.6);
-                    color:white;
-                    text-align:center;
-                    padding:6px 0;
-                    font-weight:600;
-                ">Season 1</div>
-            </div>
-        </div>
-    `;
-}
-
-/* ⭐ NEIGHBOURHOOD — SEASON 1 (UPLOADS INSIDE) ⭐ */
-function openNeighbourhoodSeason1() {
-    currentFolder = "series";
-    currentGenre = "neighbourhood-season1";
-
-    page.innerHTML = `
-        <div class="back" onclick="openNeighbourhoodFolder()">← Back</div>
-        <h2>The Neighbourhood — Season 1</h2>
-
-        <div class="row" id="row-series-neighbourhood-season1">
-            <div class="tile add-tile" onclick="triggerUpload()">
-                <div class="add-icon">+</div>
-            </div>
-        </div>
-    `;
-}
-
-/* ⭐ SITCOM FOLDER — 19 SHOWS + NEIGHBOURHOOD TILE ⭐ */
+/* ⭐ SITCOM FOLDER — AUTO GENERATES ALL 19 CARDS ⭐ */
 function openSitcomFolder() {
     currentFolder = "series";
 
@@ -326,40 +278,21 @@ function openSitcomFolder() {
 
     const row = document.getElementById("sitcom-row");
 
-    /* original 19 */
     sitcomShows.forEach(show => {
         const tile = document.createElement("div");
         tile.className = "tile";
         tile.onclick = () => openSitcomShow(show.id);
+
         tile.innerHTML = `
             <img src="${show.poster}"
                  style="width:100%; height:100%; object-fit:cover;">
         `;
+
         row.appendChild(tile);
     });
-
-    /* extra Neighbourhood tile as folder */
-    const nTile = document.createElement("div");
-    nTile.className = "tile";
-    nTile.onclick = () => openNeighbourhoodFolder();
-    nTile.innerHTML = `
-        <img src="${neighbourhoodPoster}"
-             style="width:100%; height:100%; object-fit:cover;">
-        <div style="
-            position:absolute;
-            bottom:0;
-            width:100%;
-            background:rgba(0,0,0,0.6);
-            color:white;
-            text-align:center;
-            padding:6px 0;
-            font-weight:600;
-        ">The Neighbourhood</div>
-    `;
-    row.appendChild(nTile);
 }
 
-/* ⭐ AUTO PAGE FOR EACH OF THE 19 SHOWS ⭐ */
+/* ⭐ AUTO PAGE FOR EACH SHOW ⭐ */
 function openSitcomShow(id) {
     const show = sitcomShows.find(s => s.id === id);
     if (!show) return;
@@ -409,11 +342,6 @@ function triggerUpload() {
 fileInput.addEventListener("change", function () {
     const row = document.getElementById(`row-${currentFolder}-${currentGenre}`);
     const files = Array.from(this.files);
-
-    if (!row) {
-        this.value = "";
-        return;
-    }
 
     files.forEach(file => {
         if (!file.type.startsWith("video/")) return;
